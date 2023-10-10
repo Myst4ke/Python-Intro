@@ -18,7 +18,7 @@ print(type(a))
 
 Python est entièrment basé sur des classes, presque tout est objet en Python.
 Ainsi, lorsque vous créez une variable en lui attribuant une valeur de type : `int`, `float`, ou `str` vous créez une instance de cette classe.
-Cela vous permet donc d'utiliser des méthodes présentes dans cette classe exemple :
+Cela vous permet donc d'utiliser des méthodes présentes dans la classe, exemple avec la classe `str`:
 ```python
 test = "Hello World!"
 print(test.lower())
@@ -50,5 +50,59 @@ Voici la liste des différents types de bases en python :
 | NoneType           | Type de None (valeur nulle)                      | `None`                     |
 
 Certains peuvent faire peur mais pas de problème il ne sont pas tous autant utiles les uns que les autres.
+<br>
+## Les opérateurs
 
 
+#### Les opérateurs de calcul
+
+| Opérateur    | Description                                 | Exemple                    | Types de données                       |
+|--------------|---------------------------------------------|----------------------------|----------------------------------------|
+| `=`          | Affectation (assignation de valeur)         | `x = 5`                    | Tous les types                         |
+| `+`          | Addition                                    | `5 + 3`                    | `int`, `float`, `str`, `list`, `tuple` |
+| `-`          | Soustraction                                | `7 - 2`                    | `int`, `float`                         |
+| `*`          | Multiplication                              | `4 * 6`                    | `int`, `float`                         |
+| `/`          | Division                                    | `8 / 2`                    | `int`, `float`                         |
+| `//`         | Division entière                            | `9 // 2`                   | `int`                                  |
+| `%`          | Modulo (reste de la division)               | `10 % 3`                   | `int`                                  |
+| `**`         | Exponentiation                              | `2 ** 3`                   | `int`, `float`                         |
+
+<br>
+
+#### Les opérateurs logiques & de comparaison
+
+
+| Opérateur    | Description                                                          | Exemple                    | Types de données   |
+|--------------|----------------------------------------------------------------------|----------------------------|--------------------|
+| `==`         | Égalité (comparaison de valeurs)                                     | `a == b`                   | Tous les types     |
+| `!=`         | Inégalité (différence de valeurs)                                    | `x != y`                   | Tous les types     |
+| `<`          | Inférieur à                                                          | `3 < 5`                    | `int`, `float`     |
+| `>`          | Supérieur à                                                          | `7 > 4`                    | `int`, `float`     |
+| `<=`         | Inférieur ou égal à                                                  | `2 <= 2`                   | `int`, `float`     |
+| `>=`         | Supérieur ou égal à                                                  | `9 >= 8`                   | `int`, `float`     |
+| `and`        | Opérateur logique ET                                                 | `True and True`            | `bool`             |
+| `or`         | Opérateur logique OU                                                 | `True or False`            | `bool`             |
+| `not`        | Opérateur logique NON                                                | `not False`                | `bool`             |
+| `is`         | Identité (vérifie si deux objets sont identiques)                    | `x is y`                   | Tous les types     |
+| `is not`     | Non-identité (vérifie si deux objets ne sont pas identiques)         | `a is not b`               | Tous les types     |
+| `in`         | Appartenance (vérifie si un élément est dans une séquence)           | `3 in [1, 2, 3]`           | Tous les types     |
+| `not in`     | Non-appartenance (vérifie si un élément n'est pas dans une séquence) | `4 not in [1, 2, 3]`       | Tous les types     |
+
+
+**N-B** : l'opérateur `in` peut être utilisé sur des chaines de caractères, `"Hello" in "Hello Wolrd!"` renvoie `True`
+<br>
+<br>
+
+
+## Listes et Strings
+### Slicing
+
+
+## Boucles
+
+
+## Fonctions
+### Type annotation
+
+
+## Classes
