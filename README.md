@@ -96,7 +96,31 @@ Certains peuvent faire peur mais pas de problème il ne sont pas tous autant uti
 
 ## Listes et Strings
 ### Slicing
+Le slicing est une opération courante lors de la manipulation de listes et de chaînes de caractères en Python. Il permet d'extraire des sous-ensembles de données à partir d'une séquence.
 
+Pour effectuer le slicing, vous pouvez utiliser la notation `[start:stop:step]`, où `start` est l'indice du premier élément inclus dans la tranche, `stop` est l'indice du premier élément exclu de la tranche, et `step` est le pas (l'intervalle entre les éléments).
+Voici quelques exemples :
+
+```python
+liste = [1, 2, 3, 4, 5]
+sous_liste = liste[1:4:1]  # Extrait les éléments de l'indice 1 à 3 (4 exclu)
+print(sous_liste)
+
+chaine = "Hello, World!"
+sous_chaine = chaine[0:5:1]  # Extrait les caractères de l'indice 0 à 4 (5 exclu)
+print(sous_chaine)
+```
+Il faut savoir que chaque paramètre peut être délibérement omis. Par défaut si on omet `step` il est défini à `1` il n'est donc pas nécessaire de le préciser
+```python
+liste2 = [1, 2, 3, 4, 5]
+sous_liste2 = liste2[::2]  # Extrait les éléments avec un pas de 2 (tous les indices pairs)
+print(sous_liste2)
+```
+> [2, 3, 4]
+>
+> "Hello"
+>
+> [1,3,5]
 
 ## Boucles
 
