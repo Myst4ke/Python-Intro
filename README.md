@@ -18,8 +18,11 @@ Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissag
     - [Méthodes](#méthodes)
     - [Formatted Strings](#les-formatted-strings) 
 
-- [Boucles](#boucles)
-
+- [Boucles & Conditions](#boucles--conditions)
+  - [Conditions](#conditions)
+  - [Boucles](#les-boucles)
+    - [La boucle for](#la-boucle-for)
+    - [La boucle while](#la-boucle-while)
 - [Fonctions](#fonctions)
   - [Type annotation](#type-annotation)
 
