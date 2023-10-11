@@ -37,7 +37,7 @@ Pour définir des varaibles en python aucun type n'est nécessaire. Une variable
 a = "Hello"
 a = 32
 ```
-Les types sont implicites, il sont utilisés dans des test ou pour donner des indications sur les arguments des fonctions.
+Les types sont implicites, il sont utilisés dans des test ou pour donner des indications (type annotations), par exemple sur les arguments des fonctions.
 Pour connaitre le type d'une variable on peut utiliser la fonction native de **Python** `type()`
 ```python
 a = 32.3
