@@ -301,7 +301,7 @@ Ici on a séparé la chaine de caractères grâce au patern (`-`) pour ensuite f
 #### Les Formatted Strings
 En Python, les f-strings, ou formatted strings, sont une manière pratique d'insérer des valeurs de variables dans une chaîne de caractères. Les f-strings sont délimitées par des guillemets ou des apostrophes précédés de la lettre `f` (par exemple, `f"..."` ou `f'...'`).
 
-L'utilisation des f-strings simplifie l'incorporation de variables dans une chaîne en les plaçant entre des accolades {} à l'intérieur de la chaîne. Les variables ou expressions placées à l'intérieur de ces accolades sont évaluées et leur valeur est insérée dans la chaîne.
+L'utilisation des f-strings simplifie l'incorporation de variables dans une chaîne en les plaçant entre des accolades `{}` à l'intérieur de la chaîne. Les variables ou expressions placées à l'intérieur de ces accolades sont évaluées et leur valeur est insérée dans la chaîne.
 
 Voici un exemple d'utilisation d'une f-string :
 ``` python
@@ -337,11 +337,108 @@ print(message)
 <br>
 
 
-## Boucles
+## Boucles & Conditions
+### Conditions
+Les **conditions** ou **instructions de contrôle de flux** en Python permettent de prendre des décisions en fonction de conditions spécifiques. Voici quelques-unes des instructions de contrôle de flux les plus couramment utilisées.
+L'instruction if est utilisée pour exécuter un bloc de code si une condition est vraie (**cf**: [Les opérateurs logiques](#les-opérateurs-logiques--de-comparaison)). Voici un exemple :
+```python
+age = 18
+if age >= 18:
+    print("Vous êtes majeur.")
+```
+Pour pouvoir tester plusieures condition, le `if` peut être combiné avec la condition `else` qui permet de gérer les cas ou la condition du `if` n'est pas remplie.
+```python
+age = 13
+if age >= 18:
+    print("Vous êtes majeur.")
+else:
+    print("Vous êtes mineur.")
+```
+Pour pouvoir ajouter une condition suivant le `if` il est possible d'utiliser le `elif`. Cela permet de rajouter une condition au cas où la première ne serait pas remplie.
+```python
+note = 13
+if note >= 15:
+    print("Très bien")
+elif note >= 10:
+    print("Bien")
+else:
+    print("Mauvais")
+```
+Il existe une structure permettant un **enchainement de condition**, l'instruction `match`. L'instruction `match` est utilisée pour effectuer des comparaisons plus complexes et est apparue dans **Python 3.10** (*Attention à votre version de python*). Elle permet de faire correspondre une valeur à des modèles et d'exécuter le code associé à un modèle correspondant.
+```python
+fruit = "pomme"
+match fruit:
+    case "pomme":
+        print("C'est une pomme.")
+    case "banane":
+        print("C'est une banane.")
+    case _:
+        print("Je ne sais pas quel fruit c'est.")
+```
+Il faut aussi savoir qu'il est possible de **combiner des condition** grâce aux opérateurs logiques `and` et `or` de la manière suivante.
+```python
+note = 19
+if note >= 18 and note <= 20:
+    print("Excellent !")
+```
+
+### Les Boucles
+Les boucles en Python sont utilisées pour répéter des actions un certain nombre de fois ou jusqu'à ce qu'une **condition spécifique soit satisfaite**. Il existe deux types principaux de boucles en Python : la boucle `for` et la boucle `while`. On utilise plus souvent la boucle `for` de part sa facilité d'écriture mais aussi pour se prévenir des boucles infinies.
+
+#### La Boucle for
+En Python, une boucle `for` prend généralement **une séquence** comme paramètre d'itération. Cette séquence peut être une *liste*, un *tuple*, une **chaîne de caractères**, un **dictionnaire**, un **ensemble** ou **tout autre objet itérable**. La boucle `for` parcourt ensuite les éléments de cette séquence, un par un. Pour parcourir une liste deux méthodes sont disponibles :
+
+**La méthode plus "Python" :**
+```python
+liste = [1, 2, 3, 4, 5]
+for chiffre in liste:
+    print(chiffre)
+```
+Dans ce cas on défini `chiffre` comme élément de la liste qui va prendre tour à tour toutes les valeures de la liste.
+
+<br>
+
+**La méthode classique des autres langages :**
+
+```python
+liste = [1, 2, 3, 4, 5]
+for i in range(len(liste)):
+    print(liste[i], end=' ')
+```
+>1 2 3 4 5
+
+Dans cet exemple on accède à chaque élément de la liste grâce à son indexe. Pour cela on utilise `range()` qui permet de créer un **itérateur** (une séquence de valeures) allant jusqu'à la taille renseigné en paramètre, ici la longueur de la liste (`len(liste)`).
+
+*Vous noterez qu'ici on utilise le paramètre `end` de la fonction print afin de ne pas revenir à la ligne, il est par défaut défini à "\n" (retour à la ligne).*
 
 
+**N-B** : Le nom de l'élément de la liste n'a pas d'importance (ici `chiffre`), par convention si il n'est pas utilisé dans la boucle on le définit à `_`
+<br>
+
+Vous pouvez également utiliser des conditions pour contrôler l'exécution d'une boucle for. Par exemple, vous pouvez utiliser l'instruction break pour sortir prématurément de la boucle lorsque certaines conditions sont remplies.
+```python
+nombres = [1, 2, 3, 4, 5]
+for nombre in nombres:
+    if nombre == 3:
+        break
+    print(nombre)
+```
+Dans cet exemple, la boucle `for` parcourt la liste `nombres`, mais elle s'arrête prématurément lorsque le nombre 3 est atteint en utilisant l'instruction `break`. À l'inverse l'instruction `continue` permet de passer de passer à l'itération suivante si certaines conditions sont satisfaites.
+
+#### La Boucle while
+La boucle `while` est utilisée pour répéter un ensemble d'instructions tant qu'une condition spécifique est vraie. À la différence le la boucle for, il est nécessaire de définir explicitement une **condition d'arrêt**. Ce qui fait qu'une boucle while peut être infinie si elle est mal définie. En voici un exemple :
+
+```python
+compteur = 0
+while compteur < 5:
+    print(compteur)
+    compteur += 1
+```
 ## Fonctions
+
 ### Type annotation
 
+## Gestions des fichiers
 
 ## Classes
+
