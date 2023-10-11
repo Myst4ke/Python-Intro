@@ -15,6 +15,8 @@ Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissag
     - [Répétition de Listes](#répétition-de-listes-)
   - [Slicing](#slicing)
   - [Strings](#strings)
+    - [Méthodes](#méthodes)
+    - [Formatted Strings](#les-formatted-strings) 
 
 - [Boucles](#boucles)
 
@@ -58,6 +60,7 @@ print(test.upper())
 
 Ici on utilise respectivement les méthodes `lower()` et `upper()` de la classe `str` qui permettent comme vous l'aurez remarqué de modifier le texte en minuscule ou majuscule.
 Il existe une multitude de méthode disponible, vous aurez donc le loisir de les découvrir par vous même.
+
 <br>
 
 #### Les types de base
@@ -76,6 +79,18 @@ Voici la liste des différents types de bases en python :
 | NoneType           | Type de None (valeur nulle)                      | `None`                     |
 
 Certains peuvent faire peur mais pas de problème il ne sont pas tous autant utiles les uns que les autres.
+Il est possible en python, malgré le fait que les types soient implicites, de convertir une variable dans un autre type, exemple :
+```python
+a = 34
+a_string = str(a)
+print(a_string)
+print(type(a_string))
+```
+> "34"
+> <class 'str'>
+
+**Attention** : certains type ne sont pas convertissable en n'importe quoi, par exemple il est impossible de convertir une `list` en `int`
+
 <br>
 <br>
 
@@ -237,6 +252,8 @@ sous_liste = liste[-2:] # Extrait les caractères de l'indice -2 jusqu'à la fin
 ```
 >[4, 5]
 
+<br>
+
 ### Strings
 Les strings (`str`) ou chaîne de caractères, fonctionnent comme des listes. En effet les caractères dans une chaîne de caractères sont **indexés**, tout comme les éléments dans une liste. On peut donc accéder à un caractère particulier en utilisant son indice entre crochets comme pour les listes et utiliser les opérations vu plus tôt.
 ``` python
@@ -252,8 +269,6 @@ print(resultat)
 ```
 >Hello World!
 
-<br>
-
 ``` python
 mot = "Python "
 repetition = mot * 3  # Répétition du mot trois fois
@@ -261,6 +276,63 @@ print(repetition)
 ```
 >Python Python Python 
 
+
+#### Méthodes
+Python propose de nombreuses méthodes pour manipuler les chaînes de caractères. En voici quelques-unes des plus couramment utilisées :
+
+``` python
+texte = "Bonjour, Python !"
+minuscules = texte.lower()  # "bonjour, python !"
+majuscules = texte.upper()  # "BONJOUR, PYTHON !"
+remplace = texte.replace("Python", "mon ami Python")  # "Bonjour, mon ami Python !"
+indice = texte.find("Python")  # 9 (indice de la première lettre du mot)
+occurrences = texte.count("o")  # 3
+```
+Une autre combinaison de méthodes très utile en python, sont les méthodes `split()` et `join()` elle permettent respectivement, de séparer une chaine de caractères à partir d'un patern (ou un caractère) passé en argument et de fusionner une liste grâce à un autre patern. Voici un exemple :
+
+``` python
+texte = "Ceci-est-un-test "
+mots = texte.split("-")  # ["Ceci", "est", "un", "test"]
+" ".join(mots) # "Ceci est un test"
+```
+Ici on a séparé la chaine de caractères grâce au patern (`-`) pour ensuite fusionner la liste qui résultait de cette opération grâce au patern (` `). 
+
+#### Les Formatted Strings
+En Python, les f-strings, ou formatted strings, sont une manière pratique d'insérer des valeurs de variables dans une chaîne de caractères. Les f-strings sont délimitées par des guillemets ou des apostrophes précédés de la lettre `f` (par exemple, `f"..."` ou `f'...'`).
+
+L'utilisation des f-strings simplifie l'incorporation de variables dans une chaîne en les plaçant entre des accolades {} à l'intérieur de la chaîne. Les variables ou expressions placées à l'intérieur de ces accolades sont évaluées et leur valeur est insérée dans la chaîne.
+
+Voici un exemple d'utilisation d'une f-string :
+``` python
+nom = "Alice"
+age = 30
+message = f"Bonjour, je m'appelle {nom} et j'ai {age} ans."
+print(message)
+``` 
+>Bonjour, je m'appelle Alice et j'ai 30 ans.
+
+Les f-strings offrent également un formatage avancé en permettant de spécifier comment les valeurs doivent être affichées. Cela peut être utile pour contrôler le nombre de décimales d'un nombre ou pour définir la largeur d'un champ de texte.
+
+
+``` python
+prix = 24.95534
+message = f"Le prix est de ${prix:.2f}"
+print(message)
+``` 
+>Le prix est de $24.95
+
+<br>
+
+```python
+produit = "Livre"
+prix = 19.99
+message = f"{produit:10} : ${prix:.2f}"
+print(message)
+```
+<!-- C'est super moche mais jsuis obligé, markdown de golmon -->
+>Livre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: $19.99
+
+<br>
 <br>
 
 
