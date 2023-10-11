@@ -87,6 +87,7 @@ print(a_string)
 print(type(a_string))
 ```
 > "34"
+>
 > <class 'str'>
 
 **Attention** : certains type ne sont pas convertissable en n'importe quoi, par exemple il est impossible de convertir une `list` en `int`
