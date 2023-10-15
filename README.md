@@ -3,30 +3,41 @@ Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissag
 
 
 ## Table des Matières
-- [Les variables](#les-variables)
-- [Les types de base en Python](#les-types-de-base)
-- [Les opérateurs](#les-opérateurs)
+- [**Les variables**](#les-variables)
+- [**Les types de base en Python**](#les-types-de-base)
+- [**Les opérateurs**](#les-opérateurs)
   - [Les opérateurs de calcul](#les-opérateurs-de-calcul)
   - [Les opérateurs logiques & de comparaison](#les-opérateurs-logiques--de-comparaison)
-- [Listes et Strings](#listes-et-strings)
+<br>
+
+- [**Listes et Strings**](#listes-et-strings)
   - [Accès aux Éléments de la Liste](#accès-aux-éléments-de-la-liste)
   - [Opérations sur les Listes](#opérations-sur-les-listes)
-    - [Concaténation de Listes](#concaténation-de-listes-)
-    - [Répétition de Listes](#répétition-de-listes-)
+    - [*Concaténation de Listes*](#concaténation-de-listes-)
+    - [*Répétition de Listes*](#répétition-de-listes-)
   - [Slicing](#slicing)
   - [Strings](#strings)
-    - [Méthodes](#méthodes)
-    - [Formatted Strings](#les-formatted-strings) 
+    - [*Méthodes*](#méthodes)
+    - [*Formatted Strings*](#les-formatted-strings) 
+<br>
 
-- [Boucles & Conditions](#boucles--conditions)
+- [**Boucles & Conditions**](#boucles--conditions)
   - [Conditions](#conditions)
   - [Boucles](#les-boucles)
-    - [La boucle for](#la-boucle-for)
-    - [La boucle while](#la-boucle-while)
-- [Fonctions](#fonctions)
-  - [Type annotation](#type-annotation)
+    - [*La boucle for*](#la-boucle-for)
+    - [*La boucle while*](#la-boucle-while)
+<br>
 
-- [Classes](#classes)
+- [**Fonctions**](#fonctions)
+  - [Portée des Variables](#portée-des-variables)
+  - [Fonction Main](#fonction-main)
+  - [Arguments](#arguments)
+    - [*args et kwargs*](#args-et-kwargs)
+  - [Type annotation](#type-annotation)
+<br>
+
+- [**Gestions des fichiers**](#gestions-des-fichiers)
+- [**Classes**](#classes)
 
 
 
@@ -37,7 +48,7 @@ Pour définir des varaibles en python aucun type n'est nécessaire. Une variable
 a = "Hello"
 a = 32
 ```
-Les types sont implicites, il sont utilisés dans des test ou pour donner des indications (type annotations), par exemple sur les arguments des fonctions.
+Les types sont implicites, il sont utilisés dans des test ou pour donner des indications sur les arguments des fonctions.
 Pour connaitre le type d'une variable on peut utiliser la fonction native de **Python** `type()`
 ```python
 a = 32.3
@@ -339,7 +350,6 @@ print(message)
 <br>
 <br>
 
-
 ## Boucles & Conditions
 ### Conditions
 Les **conditions** ou **instructions de contrôle de flux** en Python permettent de prendre des décisions en fonction de conditions spécifiques. Voici quelques-unes des instructions de contrôle de flux les plus couramment utilisées.
@@ -384,6 +394,7 @@ note = 19
 if note >= 18 and note <= 20:
     print("Excellent !")
 ```
+<br>
 
 ### Les Boucles
 Les boucles en Python sont utilisées pour répéter des actions un certain nombre de fois ou jusqu'à ce qu'une **condition spécifique soit satisfaite**. Il existe deux types principaux de boucles en Python : la boucle `for` et la boucle `while`. On utilise plus souvent la boucle `for` de part sa facilité d'écriture mais aussi pour se prévenir des boucles infinies.
@@ -437,11 +448,138 @@ while compteur < 5:
     print(compteur)
     compteur += 1
 ```
+
+<br>
+<br>
+
 ## Fonctions
 
-### Type annotation
+En Python, vous pouvez définir des fonctions à l'aide du mot-clé `def` suivi du nom de votre fonction, puis des paramètres (si il y en a) entre parenthèses. À la suite de la déclaration de la fonction on trouve le corps de la fonction contenant les différent calculs ou opérations à effectuer lors de l'appel. Une fonction peut tout à fait ne rien faire et avoir un corps vide, pour cela on utlise l'instruction `pass`. 
+Voici un apperçu d'a quoi peut ressembler une fonction Python :
+```python
+def ma_fonction(parametre1, parametre2):
+    # Corps de la fonction
+    resultat = parametre1 + parametre2
+    return resultat
+```
+Comme dit plus tôt voici une fonction vide, sans arguments ni corps.
+```python
+def rien():
+    pass
+```
+Dans l'exemple précédent on peut noter l'utilisation de l'intruction `return` qui permet de retourner le "résultat" d'une fonction. En effet cette instruction permet de sortir de la fonction et de renvoyer la valeur mise en paramètre. Il est possible par exemple, de faire un retrun pour chaque option possible d'une condition.
+```python
+def test_age(age):
+    if age >= 18:
+        return "Vous êtes majeur."
+    else:
+        return "Vous êtes mineur."
+```
+À défaut d'afficher la valeur comme dans les exemples précédents, ici on retourne la valeur pour l'utiliser ou non lors de l'appel de la fonction. Pour appeller une fonction il suffit d'utiliser le nom de la fonction suivi de/des paramètre(s) entre parenthèses (s'il y en a).
+```python
+réponse = test_age(13)
+print(réponse)
+```
+>"Vous êtes mineur."
 
+Ici on récupère le résultat de la fonction lors de l'appel puis on l'affiche. Notez qu'il est possible d'appeller une fonction qui retourne normalement un résultat sans l'utiliser.
+```python
+test_age(13)
+```
+Dans cet exemple on appelle la fonction `test_age` sauf puisque l'on ne récupère pas le résultat, ce code ne fait rien.
+<br>
+
+### Portée des Variables
+Les variables définies à l'intérieur d'une fonction sont dites locales à la fonction. Cela signifie qu'elles ne sont accessibles qu'à l'intérieur de la fonction. Les variables définies en dehors des fonctions ont une portée globale et peuvent être utilisées dans tout le programme.
+```python
+total = 0
+def ajoute_a_total(nombre):
+    total = total + nombre  # Cela provoquera une erreur
+ajoute_a_total(5)
+```
+Dans cet exemple la variable `total` est définie **globalement**, sauf que dans le corps de la fonction on définit de nouveau `total` cette foi **localement** ce qui écrase momentanement la variable `total` globale dans le corps de la fonction. 
+
+L'erreur produite par ce code vient du fait que lors de l'intitalisation de la variable on utilise la valeur de cette même variable ce qui est impossible. Il faut bien comprendre que dès l'instant où l'on écrit `total =`, la variable `total` globale **n'existe plus** dans le corps de la fonction ce qui provoque cette erreur.
+
+Pour palier à cette erreur on peut utiliser l'instruction `global total` avant de re-définir `total`, qui permet de signaler à Python qu'on souhaite utiliser la variable globale.
+```python
+total = 0
+def ajoute_a_total(nombre):
+    global total
+    total = total + nombre  # Cela ne provoquera plus d'erreur
+ajoute_a_total(5)
+```
+**Attention** : il n'est pas recommandé d'utiliser `global`, il faut en priorité trouver un moyen de ne pas se retrouver dans cette situation.
+<br>
+
+### Fonction Main
+En Python, il n'est pas obligatoire d'avoir une fonction `main()`. Il est néanmoins courant d'utiliser une fonction `main()` comme point d'entrée principal de votre programme. Cela permet d'organiser et de structurer votre code de manière plus lisible. 
+
+Pour cela on affectue un test `if __name__ == "__main__":` qui garantit que le code dans la fonction main() est exécuté uniquement si le script est exécuté en tant que programme principal et non s'il est importé en tant que module dans un autre script.
+
+```python
+def main():
+    # Code principal de votre programme
+    print("Hello, world!")
+
+if __name__ == "__main__":
+    main()
+```
+<br>
+
+### Arguments 
+Vous pouvez attribuer des valeurs par défaut aux paramètres d'une fonction. Cela signifie que si vous appelez la fonction sans spécifier une valeur pour un paramètre, la valeur par défaut sera utilisée.
+```python
+def saluer(nom, message="Bonjour"):
+    print(f"{message}, {nom}!")
+
+saluer("Alice")
+saluer("Bob", "Salut")
+```
+>"Bonjour, Alice!"
+>"Salut, Bob!"
+
+#### args et kwargs
+En Python, `*args` et `**kwargs` sont des mécanismes puissants qui vous permettent de travailler avec un nombre variable d'arguments dans vos fonctions. Ces notations vous offrent une grande flexibilité lors de la conception de fonctions pour traiter des cas où le nombre d'arguments n'est pas connu à l'avance.
+
+- `*args` : Arguments Non Nommés
+
+Le terme `*args` signifie "arguments non nommés" (ou "arguments positionnels"). Il vous permet de traiter un nombre variable d'arguments sans nom dans une fonction. Les arguments passés à `*args` sont rassemblés dans un tuple, que vous pouvez ensuite parcourir et traiter dans votre fonction.
+```python
+def ma_fonction(*args):
+    for argument in args:
+        print(argument)
+
+ma_fonction(1, 2, 3, "Python")
+```
+Dans cet exemple, la fonction ma_fonction peut accepter un nombre variable d'arguments non nommés. Les valeurs passées (1, 2, 3, "Python") sont collectées dans le tuple args, puis parcourues et affichées.
+
+<br>
+
+- `**kwargs` : Arguments Nom de Clé - Valeur
+
+Le terme `**kwargs` signifie "arguments nom de clé - valeur" (ou "arguments par mot-clé"). Il vous permet de traiter un nombre variable d'arguments nommés (ou arguments clé-valeur) dans une fonction. Les arguments passés à `**kwargs` sont rassemblés dans un dictionnaire, ce qui vous permet d'accéder aux valeurs associées à des noms de clé spécifiques.
+
+```python
+def ma_fonction(**kwargs):
+    for cle, valeur in kwargs.items():
+        print(f"{cle} : {valeur}")
+
+ma_fonction(nom="Alice", age=30, langage="Python")
+```
+
+Dans cet exemple, la fonction ma_fonction peut accepter un nombre variable d'arguments nommés. Les valeurs passées `("Alice", 30, "Python")` sont collectées dans le dictionnaire kwargs, puis parcourues pour afficher les paires clé-valeur. 
+Le dictionnaire `**kwargs` aurait donc la forme :
+```python
+kwargs = {
+    nom = "Alice", 
+    age = 30, 
+    langage = "Python"
+}
+```
+### Type annotation
 ## Gestions des fichiers
 
 ## Classes
+## Import 
 
