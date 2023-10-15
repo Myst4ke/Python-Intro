@@ -542,6 +542,8 @@ saluer("Bob", "Salut")
 #### args et kwargs
 En Python, `*args` et `**kwargs` sont des mécanismes puissants qui vous permettent de travailler avec un nombre variable d'arguments dans vos fonctions. Ces notations vous offrent une grande flexibilité lors de la conception de fonctions pour traiter des cas où le nombre d'arguments n'est pas connu à l'avance.
 
+<br>
+
 - `*args` : Arguments Non Nommés
 
 Le terme `*args` signifie "arguments non nommés" (ou "arguments positionnels"). Il vous permet de traiter un nombre variable d'arguments sans nom dans une fonction. Les arguments passés à `*args` sont rassemblés dans un tuple, que vous pouvez ensuite parcourir et traiter dans votre fonction.
