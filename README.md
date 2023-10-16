@@ -242,7 +242,7 @@ print(sous_chaine)
 ```
 >Hello
 
-Vous noterez qu'ici le paramètre `step` n'est pas précisé. En effet chaque paramètre peut être délibérement omis. Par défaut si on omet `step` il est défini à `1` il n'est donc pas nécessaire de le préciser. Les deux autres paramètres en revanche eux, sont définis à 0 par défaut.<br>
+Vous noterez qu'ici le paramètre `step` n'est pas précisé. En effet chaque paramètre peut être délibérement omis. Par défaut si on omet `step` il est défini à `1` il n'est donc pas nécessaire de le préciser. Les deux autres paramètres en revanche eux, sont définis à `0` pour `start` et **la taille de la liste** pour `stop` par défaut.<br>
 Voici des exemples de **slicing** valides :
 
 ```python
@@ -570,7 +570,7 @@ def ma_fonction(**kwargs):
 ma_fonction(nom="Alice", age=30, langage="Python")
 ```
 
-Dans cet exemple, la fonction ma_fonction peut accepter un nombre variable d'arguments nommés. Les valeurs passées `("Alice", 30, "Python")` sont collectées dans le dictionnaire kwargs, puis parcourues pour afficher les paires clé-valeur. 
+Dans cet exemple, la fonction ma_fonction peut accepter un nombre variable d'arguments nommés. Les valeurs passées `("Alice", 30, "Python")` sont collectées dans le dictionnaire kwargs, puis parcourues pour afficher les paires clé-valeur. Notez que `items()` est une méthode des dictionnaires pour lister les clés et les valeurs du dictionnaire.
 Le dictionnaire `**kwargs` aurait donc la forme :
 ```python
 kwargs = {
@@ -579,9 +579,38 @@ kwargs = {
     langage = "Python"
 }
 ```
+
+<br>
+
 ### Type annotation
+Comme vous l'aurez remmarqué, en Python **il n'est pas nécessaire de préciser le type des variables ainsi que le type de retour des fonctions**. Pour palier à ce potentiel manque d'information, **les annotations de types** permettent aux développeurs de spécifier le type attendu d'une variable ou d'un argument de fonction. Les annotations de types n'affectent pas le comportement du code en temps d'exécution, mais elles sont utilisées pour améliorer la lisibilité de celui-ci. 
+Une annotaion de type sur une variable s'effectue en précisant après `:`, le type la dite variable.
+```python
+test : int = 3
+```
+<br>
+
+Dans cet exemple l'annotation de type n'est pas vraiment utile car le type est évident. En revanche quand il s'agit de **paramètres de fonction**, les annotations de type sont beaucoup plus utiles pour pouvoir préciser le type d'arguments attendus.
+```python
+def addition(a: float, b: float) -> float:
+    return a + b
+```
+Ici notre fonction addition précise qu'elle attend des arguments de type `float`. Notez que le type présent après la `->` désigne le type de retour de la fonction. 
+Il est possible de spécifier plusieurs type de la manière suivante :
+```python
+# Utilisation de l'opérateur | pour des annotations de types multiples
+def fonction_multitype(valeur: int | float | str) -> None:
+    print(valeur)
+```
+
+
+
+Malgré le fait que les annotations de type précisent le type attendu il est tout à fait possible d'utiliser la fonction `addition()` avec des arguments de type `int`, ou la fonction `fonction_multitype()` avec un argument de type `list`. **Les annotations de type ne sont qu'à but purement informatif.**
+
+Il est néanmoins recommandé d'ajouter des annotations de type à son programme, pour une meilleure compréhension.
+
 ## Gestions des fichiers
 
+## Modules 
 ## Classes
-## Import 
 
