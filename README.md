@@ -267,6 +267,13 @@ sous_liste = liste[-2:] # Extrait les caractères de l'indice -2 jusqu'à la fin
 ```
 >[4, 5]
 
+Le pas (`step`) peut être négatif afin d'obtenir une slice inversée, voici un exemple :
+```python
+liste = [1, 2, 3, 4, 5]
+print(liste[::-1])
+```
+>[5, 4, 3, 2, 1]
+
 <br>
 
 ### Strings
@@ -608,7 +615,6 @@ def fonction_multitype(valeur: int | float | str) -> None:
 Malgré le fait que les annotations de type précisent le type attendu il est tout à fait possible d'utiliser la fonction `addition()` avec des arguments de type `int`, ou la fonction `fonction_multitype()` avec un argument de type `list`. **Les annotations de type ne sont qu'à but purement informatif.**
 
 Il est néanmoins recommandé d'ajouter des annotations de type à son programme, pour une meilleure compréhension.
-
 ## Gestions des fichiers
 
 ## Modules 
