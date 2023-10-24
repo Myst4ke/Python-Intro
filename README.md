@@ -37,7 +37,7 @@ Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissag
 <br>
 
 - [**Gestions des fichiers**](#gestions-des-fichiers)
-    - [Ouverture de Fichiers](#iuverture-de-fichiers)
+    - [Ouverture de Fichiers](#ouverture-de-fichiers)
     - [Modes d'Ouverture de Fichiers](#modes-douverture-de-fichiers)
     - [Lecture de Fichiers](#lecture-de-fichiers)
         - [*Gestion de Fichiers avec le Contexte*](#gestion-de-fichiers-avec-le-contexte)
