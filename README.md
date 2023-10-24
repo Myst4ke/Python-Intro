@@ -37,8 +37,13 @@ Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissag
 <br>
 
 - [**Gestions des fichiers**](#gestions-des-fichiers)
-- [**Classes**](#classes)
+    - [Ouverture de Fichiers](#iuverture-de-fichiers)
+    - [Modes d'Ouverture de Fichiers](#modes-douverture-de-fichiers)
+    - [Lecture de Fichiers](#lecture-de-fichiers)
+        - [*Gestion de Fichiers avec le Contexte*](#gestion-de-fichiers-avec-le-contexte)
+<br>
 
+- [**Classes**](#classes)
 
 
 
@@ -317,7 +322,7 @@ texte = "Ceci-est-un-test "
 mots = texte.split("-")  # ["Ceci", "est", "un", "test"]
 " ".join(mots) # "Ceci est un test"
 ```
-Ici on a séparé la chaine de caractères grâce au patern (`-`) pour ensuite fusionner la liste qui résultait de cette opération grâce au patern (` `). 
+Ici on a séparé la chaine de caractères grâce au patern (`-`) pour ensuite fusionner la liste qui résultait de cette opération grâce au patern ` ` (*un espace*). 
 
 #### Les Formatted Strings
 En Python, les f-strings, ou formatted strings, sont une manière pratique d'insérer des valeurs de variables dans une chaîne de caractères. Les f-strings sont délimitées par des guillemets ou des apostrophes précédés de la lettre `f` (par exemple, `f"..."` ou `f'...'`).
@@ -616,6 +621,79 @@ Malgré le fait que les annotations de type précisent le type attendu il est to
 
 Il est néanmoins recommandé d'ajouter des annotations de type à son programme, pour une meilleure compréhension.
 ## Gestions des fichiers
+Python offre une variété de fonctionnalités pour travailler avec des fichiers, que ce soit pour la lecture, l'écriture ou la manipulation de données stockées dans des fichiers. Cette section explorera les bases de la gestion de fichiers en Python.
+
+### Ouverture de Fichiers
+Pour ouvrir un fichier en Python, vous pouvez utiliser la fonction open(). La syntaxe de base pour ouvrir un fichier est la suivante :
+
+```python
+fichier = open("nom_du_fichier", "mode")
+```
+- `"nom_du_fichier"` est le nom ou le chemin du fichier que vous souhaitez ouvrir.
+- `"mode"` est le mode d'ouverture du fichier, tel que "lecture" ("r"), "écriture" ("w"), "ajout" ("a"), etc.
+
+
+Il est essentiel de noter que vous devez toujours fermer un fichier après avoir terminé de l'utiliser. Cela se fait en utilisant la méthode close() sur l'objet fichier.
+
+```python
+fichier.close()
+```
+
+### Modes d'Ouverture de Fichiers
+Python prend en charge divers modes d'ouverture de fichiers. Voici quelques-uns des modes les plus couramment utilisés :
+
+- `"r"` : Lecture (lecture seule). Ouvre le fichier en mode lecture.
+- `"w"` : Écriture (écriture seule). Crée un nouveau fichier s'il n'existe pas, ou écrase le contenu du fichier existant.
+- `"a"` : Ajout (écriture seule). Ouvre le fichier en mode ajout, ce qui signifie que de nouvelles données seront ajoutées à la fin du fichier sans écraser le contenu existant.
+
+Il est possible d'utiliser l'opérateur `+` afin de spécifier que l'on souhaite ouvrir le fichier en lecture et écriture.
+
+- `"r+"` : Lecture et écriture. Ouvre le fichier en mode lecture et écriture.
+- `"w+"` : Lecture et écriture (crée un nouveau fichier ou écrase le contenu existant).
+- `"a+"` : Ajout et lecture (lecture et écriture, ajout à la fin sans écraser).
+
+Il est aussi possible de spécifier que l'on souhaite ouvrir le fichier en mode binaire avec `b`.
+
+- `"rb"` : Lecture binaire. Ouvre le fichier en mode lecture binaire.
+- `"wb"` : Écriture binaire. Ouvre le fichier en mode écriture binaire.
+- `"ab"` : Ajout binaire. Ouvre le fichier en mode ajout binaire.
+
+### Lecture de Fichiers
+Pour lire le contenu d'un fichier ouvert en mode lecture ("r"), vous pouvez utiliser différentes méthodes. L'une des méthodes couramment utilisées est read(), qui lit tout le contenu du fichier en une seule chaîne de caractères. Voici comment cela fonctionne :
+```python
+fichier = open("mon_fichier.txt", "r")
+contenu = fichier.read()
+fichier.close()
+
+print(contenu)
+```
+Vous pouvez également lire un fichier ligne par ligne à l'aide d'une boucle `for` :
+```python
+fichier = open("mon_fichier.txt", "r")
+for ligne in fichier:
+    print(ligne)
+fichier.close()
+```
+
+### Écriture dans des Fichiers
+Pour écrire dans un fichier ouvert en mode écriture ("w") ou ajout ("a"), vous pouvez utiliser la méthode `write()`.
+
+```python
+fichier = open("nouveau_fichier.txt", "w")
+fichier.write("Bonjour, ceci est un exemple d'écriture dans un fichier.")
+fichier.close()
+```
+
+L'utilisation de `"w"` écrasera le contenu du fichier s'il existe déjà, tandis que `"a"` ajoutera le texte à la fin du fichier existant.
+
+#### Gestion de Fichiers avec le Contexte
+Il est **fortement recommandé** d'utiliser la déclaration `with` pour ouvrir des fichiers. Cela garantit que le fichier est correctement fermé après son utilisation, **même en cas d'exception**. Voici comment cela fonctionne :
+```python
+with open("mon_fichier.txt", "r") as fichier:
+    contenu = fichier.read()
+    # Le fichier est automatiquement fermé après la sortie du bloc "with"
+```
+
 
 ## Modules 
 ## Classes
