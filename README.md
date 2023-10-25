@@ -37,7 +37,7 @@ Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissag
 <br>
 
 - [**Gestions des fichiers**](#gestions-des-fichiers)
-    - [Ouverture de Fichiers](#ouverture-de-fichiers)
+    - [Ouverture de Fichiers](#iuverture-de-fichiers)
     - [Modes d'Ouverture de Fichiers](#modes-douverture-de-fichiers)
     - [Lecture de Fichiers](#lecture-de-fichiers)
         - [*Gestion de Fichiers avec le Contexte*](#gestion-de-fichiers-avec-le-contexte)
@@ -466,7 +466,7 @@ while compteur < 5:
 
 ## Fonctions
 
-En Python, vous pouvez définir des fonctions à l'aide du mot-clé `def` suivi du nom de votre fonction, puis des paramètres (si il y en a) entre parenthèses. À la suite de la déclaration de la fonction on trouve le corps de la fonction contenant les différent calculs ou opérations à effectuer lors de l'appel. Une fonction peut tout à fait ne rien faire et avoir un corps vide, pour cela on utlise l'instruction `pass`. 
+En Python, vous pouvez définir des fonctions à l'aide du mot-clé `def` suivi du nom de votre fonction, puis des paramètres (si il y en a) entre parenthèses. À la suite de la déclaration de la fonction on trouve le corps de la fonction contenant les différent calculs ou opérations à effectuer lors de l'appel. Une fonction peut tout à fait ne rien faire et avoir un corps vide, pour cela on utlise l'instruction `pass` (il est aussi possible d'utiliser `...`). 
 Voici un apperçu d'a quoi peut ressembler une fonction Python :
 ```python
 def ma_fonction(parametre1, parametre2):
@@ -697,4 +697,3 @@ with open("mon_fichier.txt", "r") as fichier:
 
 ## Modules 
 ## Classes
-
