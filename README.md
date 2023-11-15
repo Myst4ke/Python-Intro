@@ -43,6 +43,13 @@ Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissag
         - [*Gestion de Fichiers avec le Contexte*](#gestion-de-fichiers-avec-le-contexte)
 <br>
 
+- [**Modules**](#modules)
+    - [Utilisation des Modules](#utilisation-des-modules)
+    - [Importation Sélective](#importation-sélective)
+    - [Alias de Module](#alias-de-module)
+    - [Modules Couramment Utilisés](#modules-couramment-utilisés)
+<br>
+
 - [**Classes**](#classes)
 
 
@@ -551,6 +558,8 @@ saluer("Bob", "Salut")
 >"Bonjour, Alice!"
 >"Salut, Bob!"
 
+<br>
+
 #### args et kwargs
 En Python, `*args` et `**kwargs` sont des mécanismes puissants qui vous permettent de travailler avec un nombre variable d'arguments dans vos fonctions. Ces notations vous offrent une grande flexibilité lors de la conception de fonctions pour traiter des cas où le nombre d'arguments n'est pas connu à l'avance.
 
@@ -620,8 +629,14 @@ def fonction_multitype(valeur: int | float | str) -> None:
 Malgré le fait que les annotations de type précisent le type attendu il est tout à fait possible d'utiliser la fonction `addition()` avec des arguments de type `int`, ou la fonction `fonction_multitype()` avec un argument de type `list`. **Les annotations de type ne sont qu'à but purement informatif.**
 
 Il est néanmoins recommandé d'ajouter des annotations de type à son programme, pour une meilleure compréhension.
+
+<br>
+<br>
+
 ## Gestions des fichiers
 Python offre une variété de fonctionnalités pour travailler avec des fichiers, que ce soit pour la lecture, l'écriture ou la manipulation de données stockées dans des fichiers. Cette section explorera les bases de la gestion de fichiers en Python.
+
+<br>
 
 ### Ouverture de Fichiers
 Pour ouvrir un fichier en Python, vous pouvez utiliser la fonction open(). La syntaxe de base pour ouvrir un fichier est la suivante :
@@ -638,6 +653,8 @@ Il est essentiel de noter que vous devez toujours fermer un fichier après avoir
 ```python
 fichier.close()
 ```
+
+<br>
 
 ### Modes d'Ouverture de Fichiers
 Python prend en charge divers modes d'ouverture de fichiers. Voici quelques-uns des modes les plus couramment utilisés :
@@ -658,6 +675,8 @@ Il est aussi possible de spécifier que l'on souhaite ouvrir le fichier en mode 
 - `"wb"` : Écriture binaire. Ouvre le fichier en mode écriture binaire.
 - `"ab"` : Ajout binaire. Ouvre le fichier en mode ajout binaire.
 
+<br>
+
 ### Lecture de Fichiers
 Pour lire le contenu d'un fichier ouvert en mode lecture ("r"), vous pouvez utiliser différentes méthodes. L'une des méthodes couramment utilisées est read(), qui lit tout le contenu du fichier en une seule chaîne de caractères. Voici comment cela fonctionne :
 ```python
@@ -675,6 +694,8 @@ for ligne in fichier:
 fichier.close()
 ```
 
+<br>
+
 ### Écriture dans des Fichiers
 Pour écrire dans un fichier ouvert en mode écriture ("w") ou ajout ("a"), vous pouvez utiliser la méthode `write()`.
 
@@ -686,6 +707,8 @@ fichier.close()
 
 L'utilisation de `"w"` écrasera le contenu du fichier s'il existe déjà, tandis que `"a"` ajoutera le texte à la fin du fichier existant.
 
+<br>
+
 #### Gestion de Fichiers avec le Contexte
 Il est **fortement recommandé** d'utiliser la déclaration `with` pour ouvrir des fichiers. Cela garantit que le fichier est correctement fermé après son utilisation, **même en cas d'exception**. Voici comment cela fonctionne :
 ```python
@@ -695,5 +718,65 @@ with open("mon_fichier.txt", "r") as fichier:
 ```
 
 
+<br>
+<br>
+
 ## Modules 
+
+En Python, un module est un fichier qui contient du code Python. Les modules permettent d'organiser, de réutiliser et **d'importer des fonctionnalités dans d'autres scripts** ou programmes. Ils sont essentiels pour maintenir la **modularité** et la lisibilité du code.
+
+### Utilisation des Modules
+Pour utiliser un module dans votre code Python, vous devez l'importer à l'aide de l'instruction `import`. Voici comment importer un module nommé `mon_module` :
+```python
+import mon_module
+```
+Après l'importation, vous pouvez accéder aux fonctions, classes et variables définies dans le module en utilisant la notation `module.nom` où le `nom` correspond à l'objet que auquel on souhaite accéder.
+
+Par exemple voici mon premier fichier: 
+
+`fichier1.py`
+```python
+valeur = 3
+```
+`fichier2.py`
+```python
+import fichier1
+print(fichier1.valeur)
+```
+>3
+
+<br>
+
+### Importation Sélective
+Vous pouvez importer sélectivement des éléments spécifiques d'un module. Par exemple, si vous voulez uniquement importer la fonction ma_fonction, vous pouvez le faire comme ceci :
+```python
+from mon_module import ma_fonction
+```
+L'opérateur `*` peut être utilisé pour signifier que l'on souhaite tout importer. 
+```python
+from mon_module import *
+```
+<br>
+
+
+### Alias de Module
+Vous pouvez donner un alias (un raccourci) à un module lors de l'importation pour simplifier l'accès. Par exemple :
+```python
+import mon_module as mm
+mm.ma_fonction()
+```
+<br>
+
+
+### Modules Couramment Utilisés
+Python dispose d'une vaste bibliothèque standard contenant de nombreux modules prêts à l'emploi pour une variété de tâches. Voici quelques-uns des modules les plus couramment utilisés :
+
+- `math` : Fournit des fonctions mathématiques avancées, telles que sqrt, sin, cos, etc.
+- `os` : Permet d'interagir avec le système d'exploitation, d'accéder aux fichiers, de créer des répertoires, etc.
+- `datetime` : Offre des fonctionnalités pour la manipulation de dates et d'heures.
+- `random` : Permet de générer des nombres aléatoires.
+- `json` : Facilite la sérialisation et la désérialisation de données au format JSON multidimensionnels.
+
+**En résumé**, les modules en Python sont des composants essentiels pour **organiser votre code**, réutiliser des fonctionnalités et tirer parti de la **bibliothèque standard** riche de Python. Ils simplifient également le développement d'applications complexes en vous permettant de vous concentrer sur des tâches spécifiques sans avoir à réinventer la roue.
+
 ## Classes
