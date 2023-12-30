@@ -1,10 +1,17 @@
 # Intro au Python 
 Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissage de Python de mieux appréhender le langage grâce à des exemples détaillés.
-
+<!-- TODO :
+- Add list unpacking (*args and **kwargs)
+ -->
 
 ## Table des Matières
 - [**Les variables**](#les-variables)
 - [**Les types de base en Python**](#les-types-de-base)
+  - [Mutabilité des Types en Python](#mutabilité-des-types-en-python)
+    - [*Objets Mutables*](#objets-mutables)
+    - [*Objets Immutables*](#objets-immutables)
+<br>
+
 - [**Les opérateurs**](#les-opérateurs)
   - [Les opérateurs de calcul](#les-opérateurs-de-calcul)
   - [Les opérateurs logiques & de comparaison](#les-opérateurs-logiques--de-comparaison)
@@ -26,6 +33,9 @@ Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissag
   - [Boucles](#les-boucles)
     - [*La boucle for*](#la-boucle-for)
     - [*La boucle while*](#la-boucle-while)
+  - [Compréhensions de Liste en Python](#compréhensions-de-liste-en-python)
+    - [*Syntaxe de base*](#syntaxe-de-base)
+    - [*Compréhensions de listes multiples*](#compréhensions-de-listes-multiples)
 <br>
 
 - [**Fonctions**](#fonctions)
@@ -52,7 +62,7 @@ Ce README a pour but de permettre aux personnes ayant du mal avec l'apprentissag
 
 - [**Classes**](#classes)
 
-
+<br>
 
 ## Les variables 
 Pour définir des varaibles en python aucun type n'est nécessaire. Une variable peut prendre n'importe quel type.
@@ -82,6 +92,7 @@ print(test.upper())
 >hello world!
 >
 >HELLO WOLRD!
+
 <br>
 
 Ici on utilise respectivement les méthodes `lower()` et `upper()` de la classe `str` qui permettent comme vous l'aurez remarqué de modifier le texte en minuscule ou majuscule.
@@ -89,7 +100,7 @@ Il existe une multitude de méthode disponible, vous aurez donc le loisir de les
 
 <br>
 
-#### Les types de base
+## Les types de base
 Voici la liste des différents types de bases en python :
 | Type de base       | Description                                      | Exemple                    |
 |--------------------|--------------------------------------------------|----------------------------|
@@ -104,7 +115,7 @@ Voici la liste des différents types de bases en python :
 | frozenset          | Ensemble immuable d'éléments uniques             | `frozenset([1, 2, 3])`     |
 | NoneType           | Type de None (valeur nulle)                      | `None`                     |
 
-Certains peuvent faire peur mais pas de problème il ne sont pas tous autant utiles les uns que les autres.
+Certains types peuvent sembler inconnus mais il ne sont pas tous autant utiles les uns que les autres.
 Il est possible en python, malgré le fait que les types soient implicites, de convertir une variable dans un autre type, exemple :
 ```python
 a = 34
@@ -117,6 +128,82 @@ print(type(a_string))
 > <class 'str'>
 
 **Attention** : certains type ne sont pas convertissable en n'importe quoi, par exemple il est impossible de convertir une `list` en `int`
+
+<br>
+
+### Mutabilité des Types en Python
+En Python, la mutabilité d'un objet fait référence à la possibilité de modifier son état ou son contenu après sa création. Les objets peuvent être divisés en deux catégories en fonction de leur mutabilité : **mutables** et **immutables**. 
+Les objets mutables sont ceux dont l'état peut être modifié une fois qu'ils ont été créés, tandis que les objets immuables ne peuvent pas être modifiés après leur création.
+
+#### Objets immutables
+Un objet immuable, une fois créé, ne peut pas être modifié. Toute opération qui semble modifier l'objet crée en réalité un nouvel objet. 
+
+**Par exemple** lorsqu'on créé un entier puis qu'on "change sa valeur" en réalité on créé un nouvel entier qu'on asigne à notre variable :
+```python
+a = 42
+a = 36
+# Correspond à:
+a = int(42) # On créé l'objet int 42
+a = int(36) # On attribut à `a` un nouvel objet int 36
+```
+
+<br>
+
+**Voici quelques exemples d'objets immutables :**
+ - **Chaînes de caractères** : Les chaînes de caractères ne peuvent pas être modifiées après leur création.
+```python
+ma_chaine = "Bonjour"
+# ma_chaine[0] = 'H'  # Cela générera une erreur, car les chaînes sont immuables
+```
+ - **Les Tuples** : Les tuples ne peuvent pas être modifiés une fois créés.
+```python
+mon_tuple = (1, 2, 3)
+# mon_tuple[0] = 5  # Cela générera une erreur, car les tuples sont immuables
+```
+
+#### Objets Mutables
+Un objet mutable peut être modifié après sa création. Cela signifie que vous pouvez changer son état en ajoutant, supprimant ou modifiant des éléments sans changer son identité. Les types de données suivants sont des exemples d'objets mutables :
+ - Listes : Les listes peuvent être modifiées en ajoutant, supprimant ou modifiant des éléments.
+```python
+ma_liste = [1, 2, 3]
+ma_liste.append(4)  # Modifie la liste
+```
+ - Dictionnaires : Les dictionnaires permettent l'ajout, la suppression et la modification des paires clé-valeur.
+```python
+mon_dict = {'nom': 'John', 'age': 30}
+mon_dict['age'] = 31  # Modifie la valeur associée à la clé 'age'
+```
+
+**Attention :** modifier un objet mutable peut entraîner des effets de bord, car une modification de l'objet affecte toutes les références à cet objet.
+```python3
+liste1 = [1,2,3,4,5]
+liste2 = liste1
+liste2.pop()
+print(liste1)
+```
+> [1, 2, 3, 4]
+
+En l'occurence ici en modifiant `liste2` j'ai aussi modifier `liste1` car lors de la définition de `liste2` on utilise une référence vers `liste1`. Pour évitier cela bous aurions du faire :
+```python3
+liste1 = [1,2,3,4,5]
+liste2 = list(liste1)
+liste2.pop()
+print(liste1)
+```
+>[1, 2, 3, 4, 5]
+
+Ici en créant un nouvel objet de type `list()` on ne passe plus une référence vers `liste1` mais un nouvel objet ayant pour contenu `liste1`.
+
+En Python, les objets sont souvent passés par référence. Lorsque vous transmettez un objet mutable à une fonction, les modifications apportées à l'objet dans la fonction affectent l'objet d'origine en dehors de la fonction.
+
+**Voici la liste des types mutables et immutables :**
+| **Mutables**           | **Immutables**               |
+|------------------------|------------------------------|
+| Listes (`list`)        | Nombres (`int`, `float`)     |
+| Dictionnaires (`dict`) | Chaînes de caractères (`str`)|
+| Ensembles (`set`)      | Tuples (`tuple`)             |
+| Objets personnalisés   | Booléens (`bool`)            |
+|                        | Ensembles figés (`frozenset`)|
 
 <br>
 <br>
@@ -468,6 +555,90 @@ while compteur < 5:
     compteur += 1
 ```
 
+### Compréhensions de Liste en Python
+
+Les compréhensions de liste sont une syntaxe concise et expressive en Python pour créer des listes de manière élégante. Elles permettent de générer une liste en une seule ligne, souvent en appliquant une expression à chaque élément d'une séquence. Elles sont d'ailleurs souvent plus optimisées que les boucles classiques.
+
+#### Syntaxe de base
+
+La syntaxe générale d'une compréhension de liste est la suivante :
+
+```python
+nouvelle_liste = [expression for element in sequence if condition]
+```
+
+- `expression` : l'expression appliquée à chaque élément.
+- `element` : la variable qui prend chaque valeur de la séquence.
+- `sequence` : la séquence d'éléments à itérer (peut être une liste, une chaîne, un tuple, etc.).
+- `condition` (optionnelle) : une condition pour filtrer les éléments.
+
+Prennons comme exemple la création d'une liste allant de 0 à 9. Pour cela voici la méthode classique :
+```python
+liste = []
+for i in range(10):
+    liste.append(i)
+print(liste)
+```
+>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+Et voici comment faire avec une compréhension de liste :
+```python
+liste = [i for i in range(10)]
+print(liste)
+```
+>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+Comme vous pouvez le remarquer cette méthode est nettement plus rapide à écrire et à lire. Voici quelques exemples pour d'autres usages :
+
+**Exemple 1 : Générer une liste de carrés**
+
+```python
+carres = [x**2 for x in range(1, 6)]
+```
+>[1, 4, 9, 16, 25]
+
+**Exemple 2 : Filtrer les nombres pairs**
+
+```python
+nombres_pairs = [x for x in range(10) if x % 2 == 0]
+```
+>[0, 2, 4, 6, 8]
+
+**Exemple 3 : Convertir une chaîne en liste de caractères**
+
+```python
+liste_caracteres = [char for char in "Python"]
+```
+>['P', 'y', 't', 'h', 'o', 'n']
+
+Il faut noter qu'on utilise le terme "compréhension de listes" mais elles sont utilisables sur tous les objets "itérables" (`dict`, `set`, `tuple`, ...). Par exemple voici la première compréhension de liste sur un ensemble: 
+```python
+liste = {i for i in range(10)}
+print(liste)
+```
+>{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+#### Compréhensions de listes multiples
+Il est possible d'utiliser des compréhensions de listes les unes dans les autres. En effet si vous êtes amenés à utiliser des listes de listes il sera nécessaire d'utiliser une double compréhensions de listes pour accéder aux éléments de la sous liste.
+```python
+liste = [[1,2,3],[4,5,6]]
+liste = [[x*2 for x in sublist] for sublist in liste]
+```
+>[ [2, 4, 6], [8, 10, 12] ]
+
+Il est aussi possible d'applatir une liste grâce à une compréhension de liste.
+```python
+liste = [[1,2,3],[4,5,6]]
+liste = [x for sublist in liste for x in sublist]
+```
+>[1, 2, 3, 4, 5, 6]
+
+**Attention** la compréhension de liste supérieure doit **toujours** être écrite en première. Dans le cas contraire la compréhension de la sous liste utiliserait une variable non-définie, ici `sublist` ne pourrait pas exister si `for sublist in liste` n'avait pas été écrite en premier.
+<br>
+
+Les compréhensions de liste offrent une manière **concise** et **lisible** de créer des listes ou autres en Python. Elles sont largement utilisées pour **simplifier** le code lors de la génération de séquences basées sur des conditions ou des transformations d'éléments.
+
+
 <br>
 <br>
 
@@ -780,3 +951,5 @@ Python dispose d'une vaste bibliothèque standard contenant de nombreux modules 
 **En résumé**, les modules en Python sont des composants essentiels pour **organiser votre code**, réutiliser des fonctionnalités et tirer parti de la **bibliothèque standard** riche de Python. Ils simplifient également le développement d'applications complexes en vous permettant de vous concentrer sur des tâches spécifiques sans avoir à réinventer la roue.
 
 ## Classes
+
+
